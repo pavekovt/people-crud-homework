@@ -1,0 +1,48 @@
+
+POST http://localhost:8080/persistance/import
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="import"; filename="import"
+
+< ./data.json
+--WebAppBoundary--
+
+###
+POST http://localhost:8080/persons
+Content-Type: application/json
+
+{
+  "firstName": "Pavels",
+  "lastName": "Kovtuns",
+  "dateOfBirth": "2000-11-26"
+}
+
+###
+
+PUT http://localhost:8080/persons
+Content-Type: application/json
+
+{
+  "id": "1",
+  "firstName": "NotaPavels",
+  "lastName": "NotKovtuns",
+  "dateOfBirth": "2001-11-26"
+}
+
+###
+
+GET http://localhost:8080/persons/1
+Accept: application/json
+
+###
+
+GET http://localhost:8080/persons/age_range?from=19&to=19
+Accept: application/json
+
+###
+
+GET http://localhost:8080/persistance/export
+Accept: application/json
+
+###
